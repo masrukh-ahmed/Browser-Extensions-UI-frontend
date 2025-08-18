@@ -1,17 +1,17 @@
 let allExtensions = document.querySelector(".all-extensions");
 
-async function dataExtract() {
+async function dataExtract() {                 // function to extract data
   let jsonData = await fetch('data.json');
   let jsData = await jsonData.json();
   return jsData;
 }
 
-let extractedData = [];
+let extractedData = [];      // variable where the data extracted from the data.json file will be stored
 dataExtract()
 .then((data) => {
   extractedData = data;
 
-  filterAllBtn.classList.add("active");
+  filterAllBtn.classList.add("active");    // since this is a promise that will run as soon as the page loads, we keep the logic for the all extension card to appear after page load here
   allExtensions.innerHTML = '';
 
   for (let i=0; i<extractedData.length; i++) {
@@ -24,7 +24,7 @@ dataExtract()
   }
 })
 
-function createExtensionCard (logoPath, name, description, i) {
+function createExtensionCard (logoPath, name, description, i) {   // function to create the extension card
   let extensionCard = document.createElement("div");
   extensionCard.classList.add("extension-card");
   extensionCard.dataset.index = i;
@@ -87,7 +87,7 @@ function createExtensionCard (logoPath, name, description, i) {
 
 let filterAllBtn = document.querySelector("#filterAllBtn");
 
-filterAllBtn.addEventListener("click", async function() {
+filterAllBtn.addEventListener("click", async function() {         // logic for the "All filter button" click
   filterAllBtn.classList.add("active"); 
   filterActiveBtn.classList.remove("active");
   filterInactiveBtn.classList.remove("active");
@@ -121,7 +121,7 @@ window.addEventListener("DOMContentLoaded", async() => {
 
 let filterActiveBtn = document.querySelector("#filterActiveBtn");
 
-filterActiveBtn.addEventListener("click", async function () {
+filterActiveBtn.addEventListener("click", async function () {                  // logic for the "Active filter button" click
   filterActiveBtn.classList.add("active");
   filterAllBtn.classList.remove("active");
   filterInactiveBtn.classList.remove("active");
@@ -142,7 +142,7 @@ filterActiveBtn.addEventListener("click", async function () {
 
 let filterInactiveBtn = document.querySelector("#filterInactiveBtn");
 
-filterInactiveBtn.addEventListener("click", async function () {
+filterInactiveBtn.addEventListener("click", async function () {                      // logic for the "Inactive filter button" click
   filterInactiveBtn.classList.add("active");
   filterAllBtn.classList.remove("active");
   filterActiveBtn.classList.remove("active");
@@ -166,7 +166,7 @@ let themeToggleBtnIcon = document.querySelector("#theme-toggle-btn>img");
 let headerLogo = document.querySelector(".header-area>img");
 let body = document.querySelector("body");
 
-themeToggleBtn.addEventListener("click", () => {
+themeToggleBtn.addEventListener("click", () => {                                           // logic for the "Theme toggle button" click
   
   body.classList.toggle("dark");
 
