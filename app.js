@@ -57,10 +57,15 @@ function createExtensionCard (logoPath, name, description, i) {   // function to
   extensionRemoveToggleBtns.classList.add("extension-remove-toggle-btns");
   extensionCard.appendChild(extensionRemoveToggleBtns);
 
-  let removeBtn = document.createElement("button");
+  let removeBtn = document.createElement("button");              // remove button creation in the extension card
   removeBtn.textContent = "Remove";
   removeBtn.classList.add("remove-btn");
   extensionRemoveToggleBtns.appendChild(removeBtn);
+
+  removeBtn.addEventListener("click", function() {       // functionality for the remove button in each extension card
+    extensionCard.remove();
+    extractedData.splice(i,1);
+  })
 
   let toggleBtn = document.createElement("div");
   toggleBtn.classList.add("toggle-btn");
